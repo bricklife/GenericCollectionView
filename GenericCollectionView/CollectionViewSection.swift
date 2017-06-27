@@ -19,6 +19,13 @@ protocol CollectionViewSection {
     func didSelect(collectionView: UICollectionView, indexPath: IndexPath)
 }
 
+extension CollectionViewSection {
+    
+    func didSelect(collectionView: UICollectionView, indexPath: IndexPath) {
+        // default: do nothing
+    }
+}
+
 extension UICollectionView {
     
     func register(sections: [CollectionViewSection.Type]) {

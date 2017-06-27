@@ -46,24 +46,6 @@ struct IntSection: GenericCollectionViewSection {
     }
 }
 
-struct SeparatorSection: GenericCollectionViewSection {
-    var objects: [Void] = [()]
-    
-    static func registerCells(collectionView: UICollectionView) {
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "SeparatorCell")
-    }
-    
-    func cell(collectionView: UICollectionView, indexPath: IndexPath, object: Void) -> UICollectionViewCell? {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SeparatorCell", for: indexPath)
-        cell.backgroundColor = UIColor.gray
-        return cell
-    }
-    
-    func size(collectionView: UICollectionView, indexPath: IndexPath, object: Void) -> CGSize {
-        return CGSize(width: collectionView.bounds.size.width, height: 10)
-    }
-}
-
 struct UserSection: GenericCollectionViewSection {
     var objects: [User]
     var didSelectBlock: (User) -> Void
@@ -85,5 +67,26 @@ struct UserSection: GenericCollectionViewSection {
     
     func didSelect(collectionView: UICollectionView, indexPath: IndexPath, object: User) {
         didSelectBlock(object)
+    }
+}
+
+struct SeparatorSection: CollectionViewSection {
+    
+    static func registerCells(collectionView: UICollectionView) {
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "SeparatorCell")
+    }
+    
+    func numberOfItems() -> Int {
+        return 1
+    }
+    
+    func cell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SeparatorCell", for: indexPath)
+        cell.backgroundColor = UIColor.gray
+        return cell
+    }
+    
+    func size(collectionView: UICollectionView, indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.bounds.size.width, height: 10)
     }
 }
