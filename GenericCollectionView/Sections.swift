@@ -80,7 +80,7 @@ struct SeparatorSection: CollectionViewSection {
         return 1
     }
     
-    func cell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    func cell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell? {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SeparatorCell", for: indexPath)
         cell.backgroundColor = UIColor.gray
         return cell

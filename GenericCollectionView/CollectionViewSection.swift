@@ -13,7 +13,7 @@ protocol CollectionViewSection {
     static func registerCells(collectionView: UICollectionView)
     
     func numberOfItems() -> Int
-    func cell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell
+    func cell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell?
     func size(collectionView: UICollectionView, indexPath: IndexPath) -> CGSize
     
     func didSelect(collectionView: UICollectionView, indexPath: IndexPath)
@@ -51,9 +51,9 @@ extension GenericCollectionViewSection {
         return objects.count
     }
     
-    func cell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell {
+    func cell(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell? {
         let object = objects[indexPath.row]
-        return cell(collectionView: collectionView, indexPath: indexPath, object: object) ?? UICollectionViewCell()
+        return cell(collectionView: collectionView, indexPath: indexPath, object: object)
     }
     
     func size(collectionView: UICollectionView, indexPath: IndexPath) -> CGSize {
